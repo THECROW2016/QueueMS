@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AfriQueue – Less waiting. Better care.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{font-family:'DM Sans',system-ui,sans-serif;color:#f7fbff;background:#061b29;color-scheme:dark;font-synthesis:none;text-rendering:optimizeLegibility;scroll-behavior:smooth;--cyan:#35d7e9;--purple:#a36bff;--muted:#a5bdca;--panel:rgba(10,48,66,.7);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 20px);background:#061b29}
+*{box-sizing:border-box}
+body{margin:0;min-width:320px;background:#061b29}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.hero{position:relative;isolation:isolate;min-height:750px;margin:22px;padding:30px 4.3% 28px;overflow:hidden;border:1px solid rgba(53,215,233,.7);border-radius:23px;background:#063749;box-shadow:0 25px 80px #0006}
+.hero-image,.hero-overlay{position:absolute;inset:0;z-index:-2}
+.hero-image{background:radial-gradient(ellipse at 80% 20%,#0b6a80 0%,transparent 55%),linear-gradient(90deg,#062c3a 0%,#06394b 55%,#0a4a5c 100%)}
+.hero-overlay{z-index:-1;background:radial-gradient(ellipse at 17% 78%,#007f9b59,transparent 45%),linear-gradient(180deg,#041c2b25,#041c2b7c)}
+.navbar,.nav-links,.brand,.hero-actions,.trust-line,.hero-bottom,.metric-card,.floating-token,.slide-count{display:flex;align-items:center}
+.navbar{justify-content:space-between;position:relative;z-index:5;gap:24px}
+.brand{gap:10px;font-size:27px;font-weight:700;letter-spacing:-1.3px;white-space:nowrap}
+.brand-mark{display:grid;place-items:center;width:42px;height:42px;color:white;font-size:38px;font-weight:900;font-style:italic;background:linear-gradient(135deg,#36d7eb,#a36bff);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.brand-accent{color:var(--purple)}
+.nav-links{gap:clamp(15px,2.5vw,39px)}
+.nav-links a{position:relative;color:#d5e2eb;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover,.nav-links .nav-active{color:white}
+.nav-links .nav-active::after{position:absolute;bottom:-10px;left:0;width:100%;height:3px;content:'';background:var(--purple)}
+.menu-toggle{display:none;color:white;background:transparent;border:0;font-size:27px;cursor:pointer}
+.hero-content{display:grid;grid-template-columns:1fr .9fr;align-items:center;gap:28px;min-height:445px;padding-top:28px}
+.hero-copy{max-width:590px}
+.eyebrow,.section-kicker,.display-label{font-size:10px;font-weight:700;letter-spacing:2px}
+.eyebrow{display:flex;align-items:center;gap:10px;color:#bceef5}
+.status-dot,.demo-badge span{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan)}
+.hero-copy h1,.hero-display h2,.intro-section h2,.section-heading h2,.queue-heading h2,.contact-section h2{margin:20px 0;line-height:.95;letter-spacing:-1.5px}
+.hero-copy h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(56px,7vw,92px);font-weight:800}
+.hero-copy>p,.contact-section p{max-width:400px;color:#c3d5df;font-size:15px;line-height:1.8}
+.hero-actions{flex-wrap:wrap;gap:12px;margin-top:27px}
+.button{display:inline-flex;justify-content:center;align-items:center;gap:19px;min-height:44px;padding:0 20px;border-radius:30px;font-size:10px;font-weight:700;letter-spacing:.7px;transition:transform .2s,background .2s}
+.button:hover{transform:translateY(-2px)}
+.button span{font-size:17px}
+.button-primary{color:white;border:1px solid var(--purple);background:linear-gradient(105deg,#8753e6,#643bb8);box-shadow:0 0 25px #8b59ec24}
+.button-primary:hover{background:linear-gradient(105deg,#9d71f5,#7950cf)}
+.button-ghost{border:1px solid #b3d2dc7a;background:#062b3a57}
+.trust-line{gap:10px;margin-top:30px;color:#b9d1db;font-size:11px}
+.trust-icon{display:grid;place-items:center;width:24px;height:24px;color:var(--cyan);border:1px solid #35d7e95b;border-radius:50%}
+.hero-display{position:relative;justify-self:end;width:100%;max-width:475px;padding-left:20px}
+.display-label{color:#b5d0db;font-size:9px}
+.hero-display h2{margin:25px 0 0;font-family:'Barlow Condensed',sans-serif;font-size:clamp(80px,10vw,145px);font-weight:900;line-height:.79;letter-spacing:-2px;text-align:right;text-shadow:0 6px 35px #0004}
+.hero-display h2 span{color:transparent;-webkit-text-stroke:1px #b1eff7}
+.floating-token{position:relative;gap:13px;width:fit-content;margin:36px 0 0 auto;padding:14px 18px;border:1px solid #8ceaf65c;border-radius:13px;background:#082d3fc9;box-shadow:0 12px 40px #00101955;backdrop-filter:blur(16px)}
+.token-icon,.metric-icon{display:grid;place-items:center;flex-shrink:0;width:42px;height:42px;color:var(--cyan);border:1px solid #a36bffad;border-radius:50%;font-size:23px}
+.floating-token small,.metric-card small{display:block;margin-bottom:5px;color:#b4cad5;font-size:9px;letter-spacing:1px}
+.floating-token strong{font-size:24px}
+.live-badge{margin-left:12px;padding:5px 8px;color:#76f0cb;border-radius:5px;background:#76f0cb18;font-size:9px;letter-spacing:1px}
+.hero-bottom{position:relative;flex-wrap:wrap;gap:13px;margin-top:5px}
+.metric-card{gap:13px;min-width:190px;padding:13px 17px;border:1px solid #56d9e75c;border-radius:12px;background:#06394b99;backdrop-filter:blur(12px)}
+.metric-icon{width:38px;height:38px;font-size:22px}
+.metric-card strong{font-size:24px;letter-spacing:-.7px}
+.metric-card em{color:#bed4df;font-size:11px;font-style:normal;font-weight:400}
+.slide-count{gap:8px;margin-left:auto;color:#c2d6e0}
+.slide-count strong{color:white;font-size:29px}
+.slide-count span{font-size:14px}
+.slide-count i{width:40px;height:3px;margin-left:10px;background:var(--purple)}
+.wave{position:absolute;z-index:-1;left:-10%;bottom:14%;width:80%;height:120px;pointer-events:none;border-top:2px solid #35d7e99c;border-radius:50%;transform:rotate(19deg);filter:drop-shadow(0 0 12px #35d7e9)}
+.wave-two{bottom:6%;left:-5%;border-color:#a36bff99;transform:rotate(14deg);filter:drop-shadow(0 0 10px #a36bff)}
+.intro-section,.features-section,.queue-section,.contact-section,.footer{max-width:1400px;margin:auto;padding:85px 7%}
+.intro-section{display:grid;grid-template-columns:1fr .8fr;align-items:center;gap:55px}
+.section-kicker{color:var(--cyan)}
+.intro-section h2,.section-heading h2,.queue-heading h2,.contact-section h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(38px,5vw,62px);font-weight:700;line-height:1.02}
+.intro-section h2 span{color:var(--purple)}
+.intro-section>p,.section-heading>p,.queue-heading p{color:var(--muted);font-size:14px;line-height:1.9}
+.features-section{padding-top:35px}
+.section-heading,.queue-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:35px}
+.section-heading>p{max-width:280px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.feature-card{min-height:245px;padding:24px;border:1px solid #4e81934a;border-radius:15px;background:linear-gradient(140deg,#103346,#092433);transition:transform .25s,border-color .25s}
+.feature-card:hover{transform:translateY(-5px);border-color:#a36bff9c}
+.feature-top{display:flex;justify-content:space-between;align-items:center}
+.feature-icon{display:grid;place-items:center;width:46px;height:46px;color:var(--cyan);border:1px solid #35d7e94d;border-radius:12px;font-size:23px}
+.feature-number{color:#668697;font-size:12px}
+.feature-card h3{margin:24px 0 10px;font-size:16px}
+.feature-card p{min-height:65px;color:var(--muted);font-size:12px;line-height:1.8}
+.feature-card>a{display:inline-block;margin-top:13px;color:var(--cyan);font-size:9px;font-weight:700;letter-spacing:1px}
+.queue-section{padding-top:30px}
+.queue-heading h2{margin-bottom:10px}
+.queue-heading p{margin:0;font-size:12px}
+.demo-badge{display:inline-flex;align-items:center;gap:9px;padding:10px 13px;color:#a5d7de;border:1px solid #35d7e946;border-radius:30px;font-size:9px;letter-spacing:1px;white-space:nowrap}
+.queue-panel{overflow:hidden;border:1px solid #416b7c70;border-radius:15px;background:#0a2938}
+.queue-toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:22px;border-bottom:1px solid #416b7c70}
+.queue-toolbar>strong{font-size:15px}
+.queue-tabs{display:flex;gap:5px}
+.tab{padding:9px 13px;color:#afc5d0;border:1px solid transparent;border-radius:8px;background:transparent;font-size:11px;cursor:pointer}
+.tab.active{color:white;border-color:#a36bff78;background:#a36bff22}
+.queue-table-wrap{overflow-x:auto}
+.queue-table{width:100%;border-collapse:collapse;text-align:left;white-space:nowrap}
+.queue-table th,.queue-table td{padding:17px 22px;border-bottom:1px solid #416b7c45;font-size:12px}
+.queue-table th{color:#8daebb;background:#0c3040;font-size:9px;letter-spacing:1px}
+.queue-table td{color:#d3e1e9}
+.queue-table tbody tr:last-child td{border-bottom:0}
+.token-text{color:var(--cyan);font-size:14px}
+.queue-status{display:inline-block;padding:6px 10px;border-radius:20px;font-size:10px}
+.queue-status.serving{color:#6cf0c3;background:#6cf0c31b}
+.queue-status.waiting{color:#d5bcff;background:#a36bff22}
+.contact-section{display:flex;justify-content:space-between;align-items:center;gap:30px;margin-top:25px;border-top:1px solid #3b68784d}
+.contact-section h2{margin-bottom:12px}
+.contact-section p{font-size:13px}
+.footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;padding-top:25px;padding-bottom:35px;border-top:1px solid #3b68784d}
+.footer .brand{font-size:21px}
+.footer .brand-mark{width:32px;height:32px;font-size:30px}
+.footer p,.footer>span{color:#91adbc;font-size:11px;margin:0}
+@media (min-width:1500px){.hero{max-width:1600px;margin:30px auto;min-height:800px}}
+@media (max-width:1000px){
+.hero{min-height:750px;padding:28px}
+.hero-content{grid-template-columns:1fr .85fr;gap:12px}
+.hero-display h2{font-size:clamp(70px,10vw,105px)}
+.metric-card{min-width:160px;padding:12px}
+.slide-count{display:none}
+.feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:680px){
+.hero{min-height:auto;margin:10px;padding:22px 18px 20px;border-radius:17px}
+.brand{font-size:22px}
+.brand-mark{width:34px;height:34px;font-size:32px}
+.menu-toggle{display:block}
+.nav-links{position:absolute;top:55px;right:0;left:0;display:none;align-items:stretch;flex-direction:column;gap:0;padding:10px;border:1px solid #35d7e94d;border-radius:12px;background:#082533f5;box-shadow:0 15px 30px #0005}
+.nav-links.open{display:flex}
+.nav-links a{padding:14px 12px}
+.nav-links .nav-active::after{display:none}
+.hero-content{grid-template-columns:1fr;gap:40px;min-height:0;padding-top:60px}
+.hero-copy h1{font-size:clamp(58px,14vw,84px)}
+.hero-copy>p{max-width:350px;font-size:14px}
+.hero-display{max-width:100%;padding-left:0}
+.hero-display h2{margin-top:22px;font-size:clamp(82px,20vw,125px)}
+.floating-token{margin-top:23px}
+.hero-bottom{display:grid;grid-template-columns:1fr;margin-top:35px}
+.metric-card{width:100%}
+.wave{width:120%}
+.intro-section,.features-section,.queue-section,.contact-section,.footer{padding:55px 22px}
+.intro-section{grid-template-columns:1fr;gap:12px}
+.section-heading,.queue-heading{align-items:flex-start;flex-direction:column;gap:10px}
+.feature-grid{grid-template-columns:1fr}
+.feature-card{min-height:auto}
+.feature-card p{min-height:0}
+.queue-toolbar{align-items:flex-start;flex-direction:column}
+.queue-table th,.queue-table td{padding:15px}
+.contact-section{align-items:flex-start;flex-direction:column}
+.footer{align-items:flex-start;flex-direction:column;gap:10px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<section class="hero" id="home">
+  <div class="hero-image"></div><div class="hero-overlay"></div><div class="wave wave-one"></div><div class="wave wave-two"></div>
+  <header class="navbar">
+    <a class="brand" href="#home" aria-label="AfriQueue home"><span class="brand-mark">A</span><span>Afri<span class="brand-accent">Queue</span></span></a>
+    <nav class="nav-links" id="nav" aria-label="Main"></nav>
+    <button class="menu-toggle" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  </header>
+  <div class="hero-content">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="status-dot"></span> SMART HEALTHCARE TECHNOLOGY</span>
+      <h1>Less waiting.<br>Better care.</h1>
+      <p>A smarter way to manage patient queues, streamline hospital operations, and deliver a better healthcare experience.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#queue">EXPLORE THE PLATFORM <span>↗</span></a>
+        <a class="button button-ghost" href="#features">DISCOVER FEATURES</a>
+      </div>
+      <div class="trust-line"><span class="trust-icon">✚</span>Built for modern healthcare facilities</div>
+    </div>
+    <div class="hero-display">
+      <span class="display-label">PATIENT FLOW / LIVE PREVIEW</span>
+      <h2>CARE<br>FLOWS<br><span>BETTER.</span></h2>
+      <div class="floating-token"><span class="token-icon">✚</span><div><small>NOW SERVING</small><strong data-serving>A024</strong></div><span class="live-badge">LIVE</span></div>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="metric-card"><span class="metric-icon">♙</span><div><small>NOW SERVING</small><strong data-serving>A024</strong></div></div>
+    <div class="metric-card"><span class="metric-icon">◷</span><div><small>IN THE QUEUE</small><strong><span id="mCount">0</span> <em>patients</em></strong></div></div>
+    <div class="metric-card"><span class="metric-icon">◴</span><div><small>AVERAGE WAIT</small><strong><span id="mWait">0</span> <em>min</em></strong></div></div>
+    <div class="slide-count"><strong>01</strong><span>/ 03</span><i></i></div>
+  </div>
+</section>
+
+<section class="intro-section" id="about">
+  <div><span class="section-kicker">A BETTER PATIENT EXPERIENCE</span><h2>Every patient matters.<br><span>Every minute counts.</span></h2></div>
+  <p>AfriQueue helps healthcare teams coordinate patient flow from reception to consultation, laboratory and pharmacy — all from one connected platform.</p>
+</section>
+
+<section class="features-section" id="features">
+  <div class="section-heading">
+    <div><span class="section-kicker">ONE CONNECTED PLATFORM</span><h2>Designed for the way<br>hospitals work.</h2></div>
+    <p>Less manual coordination. More visibility. Smoother service.</p>
+  </div>
+  <div class="feature-grid" id="featureGrid"></div>
+</section>
+
+<section class="queue-section" id="queue">
+  <div class="queue-heading">
+    <div><span class="section-kicker">QUEUE MONITOR</span><h2>Patient flow at a glance.</h2><p>Sample preview data — not connected to a hospital server.</p></div>
+    <span class="demo-badge"><span></span> DEMO PREVIEW</span>
+  </div>
+  <div class="queue-panel">
+    <div class="queue-toolbar"><strong>Today's queue</strong><div class="queue-tabs" id="tabs" role="group" aria-label="Filter queue"></div></div>
+    <div class="queue-table-wrap">
+      <table class="queue-table">
+        <thead><tr><th>QUEUE TOKEN</th><th>PATIENT REFERENCE</th><th>DEPARTMENT</th><th>STATUS</th><th>EST. WAIT</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div><span class="section-kicker">READY TO IMPROVE YOUR QUEUE?</span><h2>Let patient care<br>flow better.</h2><p>Bring your reception, service points and waiting-room displays together.</p></div>
+  <a class="button button-primary" href="mailto:contact@afriqueue.com">TALK TO AFRIQUEUE <span>↗</span></a>
+</section>
+
+<footer class="footer">
+  <a class="brand" href="#home"><span class="brand-mark">A</span><span>Afri<span class="brand-accent">Queue</span></span></a>
+  <p>Powered by Intelligence. Driven by Service.</p>
+  <span>© <span id="yr"></span> AfriQueue Technologies Ltd.</span>
+</footer>
+</main>
+
+<script>
+var queueData=[
+{token:"A024",patient:"Patient A024",department:"Outpatient",status:"Serving",wait:"Now",mins:0},
+{token:"A025",patient:"Patient A025",department:"Consultation",status:"Waiting",wait:"5 min",mins:5},
+{token:"A026",patient:"Patient A026",department:"Laboratory",status:"Waiting",wait:"12 min",mins:12},
+{token:"A027",patient:"Patient A027",department:"Pharmacy",status:"Waiting",wait:"18 min",mins:18}];
+var navItems=[["Home","home"],["About","about"],["Features","features"],["Queue Display","queue"],["Contact","contact"]];
+var features=[
+["01","Reception & Registration","Register patients, generate queue tokens and direct patients to the right department.","♙"],
+["02","Live Queue Management","Call the next patient, update queue status and reduce confusion at busy service points.","↗"],
+["03","Room & Provider Panels","Let staff manage their assigned queues and call patients into consultation rooms.","✚"],
+["04","Public Queue Display","Show currently serving tokens and upcoming patients on waiting-room screens.","▣"],
+["05","Reports & Analytics","Track waiting times, patient throughput and department performance.","▥"],
+["06","Role-Based Access","Give administrators, receptionists and healthcare staff appropriate permissions.","◇"]];
+var $=function(id){return document.getElementById(id)};
+var activeTab="All",nav=$("nav"),menuBtn=$("menuBtn");
+nav.innerHTML=navItems.map(function(n,i){return '<a href="#'+n[1]+'" data-id="'+n[1]+'"'+(i===0?' class="nav-active"':'')+'>'+n[0]+'</a>'}).join("");
+function setMenu(o){nav.classList.toggle("open",o);menuBtn.setAttribute("aria-expanded",o);menuBtn.textContent=o?"✕":"☰"}
+menuBtn.onclick=function(){setMenu(!nav.classList.contains("open"))};
+nav.addEventListener("click",function(e){if(e.target.tagName==="A")setMenu(false)});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")setMenu(false)});
+document.addEventListener("click",function(e){if(!nav.contains(e.target)&&!menuBtn.contains(e.target))setMenu(false)});
+if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting)nav.querySelectorAll("a").forEach(function(a){a.classList.toggle("nav-active",a.dataset.id===en.target.id)})})},{rootMargin:"-40% 0px -55% 0px"});
+  navItems.forEach(function(n){var s=$(n[1]);if(s)io.observe(s)});
+}
+var serving=queueData.filter(function(q){return q.status==="Serving"})[0];
+var waiting=queueData.filter(function(q){return q.status==="Waiting"});
+document.querySelectorAll("[data-serving]").forEach(function(el){el.textContent=serving?serving.token:"—"});
+$("mCount").textContent=String(waiting.length).padStart(2,"0");
+$("mWait").textContent=waiting.length?Math.round(waiting.reduce(function(s,q){return s+q.mins},0)/waiting.length):0;
+$("featureGrid").innerHTML=features.map(function(f){return '<article class="feature-card"><div class="feature-top"><span class="feature-icon" aria-hidden="true">'+f[3]+'</span><span class="feature-number">'+f[0]+'</span></div><h3>'+f[1]+'</h3><p>'+f[2]+'</p><a href="#queue" aria-label="Explore '+f[1]+'">EXPLORE MODULE ↗</a></article>'}).join("");
+function renderQueue(){
+  var l=queueData.filter(function(q){return activeTab==="All"||q.status===activeTab});
+  $("rows").innerHTML=l.length?l.map(function(q){return '<tr><td><strong class="token-text">'+q.token+'</strong></td><td>'+q.patient+'</td><td>'+q.department+'</td><td><span class="queue-status '+q.status.toLowerCase()+'">'+q.status+'</span></td><td>'+q.wait+'</td></tr>'}).join(""):'<tr><td colspan="5">No queue records found.</td></tr>';
+  $("tabs").innerHTML=["All","Serving","Waiting"].map(function(t){return '<button class="tab'+(t===activeTab?' active':'')+'" data-tab="'+t+'" aria-pressed="'+(t===activeTab)+'">'+t+'</button>'}).join("");
+}
+$("tabs").addEventListener("click",function(e){var t=e.target.dataset.tab;if(t){activeTab=t;renderQueue()}});
+renderQueue();
+$("yr").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
